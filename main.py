@@ -1,5 +1,3 @@
-#email : expression@string.string
-#password : string+numbers
 import mysql.connector , re
 config = {
     'user':'Amin',
@@ -25,25 +23,20 @@ def Insert_Table(Table_name,keys,values):
 """
 NOW ASSUME WE HAVE DATABASE WITH TABLE WITH CHARACTERIZATION WE NEED TO INSERT OUR  INPUT DATA
 """
-email_temp = r'\b[A-Za-z0-9._%+-]+@[A-Za-z.-]+\.[A-Z|a-z]{2,}\b'
-password_temp = r'\w+'
-
-#email , password = input('please: enter your email: ') , input("type your password: ")
-email , password = 'amin@fkhbsde.com' , "02648g"
-
-key = ['email','password']
-values = [email,password]
-if re.fullmatch(email_temp, email):
-    if re.fullmatch(password_temp,password) and re.findall(r'[A-Za-z]',password):
-        if re.findall('\d',password):
-            Insert_Table(T_NAME,key,values)
+def check_then_Insert(Table_name,keys,values):
+    email , password = values[0], values[1]
+    email_temp = r'\b[A-Za-z0-9._%+-]+@[A-Za-z.-]+\.[A-Z|a-z]{2,}\b'
+    if re.fullmatch(email_temp, email):
+        if re.findall("\d", password) and re.findall(r'[A-Za-z]', password):
+            Insert_Table(Table_name, keys, values)
             print("Data Inserted Successfully")
         else:
-            print("Password must have Number")
+            print("Error: Password must be an Expression (string+numbers) ")
     else:
-        print("Password must be an Expression (string+numbers) ")
-else:
-    print("email format is wrong please enter correct Format like below \n info@maktabkhooneh.org expression@string.string ")
+        print(
+            "Error: email format is wrong please enter correct Format like below \n info@maktabkhooneh.org \n expression@string.string ")
 
-
-
+email , password = input('please: enter your email: ') , input("type your password: ")
+key = ['email','password']
+values = [email,password]
+A = check_then_Insert(T_NAME,key,values)
