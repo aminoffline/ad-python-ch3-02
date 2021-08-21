@@ -5,7 +5,7 @@ config = {
     'host':'localhost',
     'database':'second_assignment'
 }
-T_NAME = 'ep'
+T_NAME = 'ep'   # Name of table that we r going to insert data in it
 db = mysql.connector.connect(**config)
 cursor = db.cursor()
 def Insert_Table(Table_name,keys,values):
