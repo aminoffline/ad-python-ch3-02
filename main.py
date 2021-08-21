@@ -28,12 +28,14 @@ NOW ASSUME WE HAVE DATABASE WITH TABLE WITH CHARACTERIZATION WE NEED TO INSERT O
 email_temp = r'\b[A-Za-z0-9._%+-]+@[A-Za-z.-]+\.[A-Z|a-z]{2,}\b'
 password_temp = r'\w+'
 
-email , password = input('please: enter your email: ') , input("type your password: ")
+#email , password = input('please: enter your email: ') , input("type your password: ")
+email , password = 'amin@fkhbsde.com' , "02648g"
+
 key = ['email','password']
 values = [email,password]
 if re.fullmatch(email_temp, email):
-    if re.fullmatch(password_temp,password) and re.match(r'[A-Za-z]',password):
-        if re.match('\d',password):
+    if re.fullmatch(password_temp,password) and re.findall(r'[A-Za-z]',password):
+        if re.findall('\d',password):
             Insert_Table(T_NAME,key,values)
             print("Data Inserted Successfully")
         else:
